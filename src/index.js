@@ -1,5 +1,5 @@
-const one = require('./modules/one');
-const two = require('./modules/two');
+import moduleOne from './modules/one';
+import moduleTwo from './modules/two';
 
-one();
-two();
+moduleOne();
+moduleTwo();

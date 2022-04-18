@@ -2,4 +2,4 @@ const moduleTwo = () => {
     console.log('two.js');
 };
 
-module.exports = moduleTwo;
+export default moduleTwo;
