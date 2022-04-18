@@ -2,6 +2,6 @@ const moduleOne = () => {
     console.log('one.js');
 };
 
-module.export = moduleOne;
+module.exports = moduleOne;
 
 
