@@ -3,24 +3,18 @@ const day = document.querySelector('.day');
 const time = document.querySelector('.time');
 const newYear = document.querySelector('.new-year');
 
-const days = [
-    'Воскресенье',
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота'
-];
+let currentTime;
+let good;
+let daysRemaining;
+let dayOfTheWeek;
 
-function toAmPmTimeFormat() {
+
+function getData() {
     let dayNow = new Date().getDay();
     let hours = new Date().getHours();
     let minutes = new Date().getMinutes();
     let seconds = new Date().getSeconds();
-    let currentTime;
-    let good;
-    let daysRemaining;
+
     
     const getTimeRemainingTillNewYear = (year) => {
         let dateStop = new Date(`01 january ${year}`).getTime();
@@ -39,37 +33,58 @@ function toAmPmTimeFormat() {
         return daysRemaining;
     };
 
-    if (hours >= 5 && hours < 11) {
-        good = 'Доброе утро!';
-    }
-    if (hours >= 11 && hours < 18) {
-        good = 'Добрый день!';
-    }
-    if (hours >= 18 && hours < 23) {
-        good = 'Добрый вечер!';
-    }
-    if (hours >= 5 && hours < 11) {
-        good = 'Доброй ночи!';
-    }
+    const toAmPmTimeFormat = () => {
+        let amPm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
     
+        hours = hours < 10 ? `0${hours}` : `${hours}`;
+        minutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+        seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+        
+        currentTime = `${hours}:${minutes}:${seconds} ${amPm}`;
+    };
+
+    const greetingTranslation = () => {
+        if (hours >= 5 && hours < 11) {
+            good = 'Доброе утро!';
+        }
+        if (hours >= 11 && hours < 18) {
+            good = 'Добрый день!';
+        }
+        if (hours >= 18 && hours < 23) {
+            good = 'Добрый вечер!';
+        }
+        if (hours >= 5 && hours < 11) {
+            good = 'Доброй ночи!';
+        }
+    };
+
+    const getDayOfWeek = () => {
+        const days = [
+            'Воскресенье',
+            'Понедельник',
+            'Вторник',
+            'Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота'
+        ];
+
+        dayOfTheWeek = days[dayNow];
+    };
+    
+
+    greetingTranslation();
+    getDayOfWeek();
+    toAmPmTimeFormat();
     getTimeRemainingTillNewYear('2023');
-
-    let amPm = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12;
-    hours = hours ? hours : 12; 
-
-    hours = hours < 10 ? `0${hours}` : `${hours}`;
-    minutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-    seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-    
-    currentTime = `${hours}:${minutes}:${seconds} ${amPm}`;
     
     greetings.textContent = `${good}`;
-    day.textContent = `Сегодня: ${days[dayNow]}`;
+    day.textContent = `Сегодня: ${dayOfTheWeek}`;
     time.textContent = `Текущее время: ${currentTime}`;
     newYear.textContent = `До нового года осталось ${daysRemaining}`;
-
 }
 
-setInterval(toAmPmTimeFormat, 1000);
+setInterval(getData, 1000);
 
