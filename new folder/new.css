@@ -1,6 +1,17 @@
-p {
+.first {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 120px;
+}
+
+.container {
+    margin-top: 300px;
+    display: flex;
+}
+
+.text {
+    margin-right: 30px;
+    height: fit-content;
+    cursor: pointer;
 }

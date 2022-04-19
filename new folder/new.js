@@ -15,16 +15,16 @@ function getData() {
     let minutes = new Date().getMinutes();
     let seconds = new Date().getSeconds();
 
-    
+
     const getTimeRemainingTillNewYear = (year) => {
         let dateStop = new Date(`01 january ${year}`).getTime();
         let dateNow = new Date().getTime();
-        
+
         daysRemaining = Math.floor((dateStop - dateNow) / 1000 / 60 / 60 / 24);
 
         if (daysRemaining === 1 || daysRemaining % 10 === 1) {
             daysRemaining = `${daysRemaining} день`;
-        } else if ((daysRemaining > 1 && daysRemaining < 5) || (daysRemaining % 10 > 1 && daysRemaining % 10 <  5)) {
+        } else if ((daysRemaining > 1 && daysRemaining < 5) || (daysRemaining % 10 > 1 && daysRemaining % 10 < 5)) {
             daysRemaining = `${daysRemaining} дня`;
         } else {
             daysRemaining = `${daysRemaining} дней`;
@@ -36,12 +36,12 @@ function getData() {
     const toAmPmTimeFormat = () => {
         let amPm = hours >= 12 ? 'PM' : 'AM';
         hours = hours % 12;
-        hours = hours ? hours : 12; 
-    
+        hours = hours ? hours : 12;
+
         hours = hours < 10 ? `0${hours}` : `${hours}`;
         minutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
         seconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-        
+
         currentTime = `${hours}:${minutes}:${seconds} ${amPm}`;
     };
 
@@ -73,13 +73,13 @@ function getData() {
 
         dayOfTheWeek = days[dayNow];
     };
-    
+
 
     greetingTranslation();
     getDayOfWeek();
     toAmPmTimeFormat();
     getTimeRemainingTillNewYear('2023');
-    
+
     greetings.textContent = `${good}`;
     day.textContent = `Сегодня: ${dayOfTheWeek}`;
     time.textContent = `Текущее время: ${currentTime}`;
@@ -87,4 +87,3 @@ function getData() {
 }
 
 setInterval(getData, 1000);
-
