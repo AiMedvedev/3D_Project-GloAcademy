@@ -8,7 +8,19 @@ const menu = () => {
 
     menuBtn.addEventListener('click', handleMenu);
     closeBtn.addEventListener('click', handleMenu);
-    menuItems.forEach(menuItem => menuItem.addEventListener('click', handleMenu));
+    
+    menu.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    
+    menuItems.forEach(menuItem => {
+        menuItem.addEventListener('click', handleMenu);
+    });
 
 };
 
