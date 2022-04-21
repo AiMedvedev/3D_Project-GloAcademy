@@ -4,11 +4,13 @@ const menu = () => {
     const closeBtn = menu.querySelector('.close-btn');
     const menuItems = menu.querySelectorAll('ul>li>a');
 
-    const handleMenu = () => {menu.classList.toggle('active-menu');};
+    const handleMenu = () => {
+        menu.classList.toggle('active-menu');
+    };
 
     menuBtn.addEventListener('click', handleMenu);
     closeBtn.addEventListener('click', handleMenu);
-    
+
     menu.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -17,7 +19,7 @@ const menu = () => {
             });
         });
     });
-    
+
     menuItems.forEach(menuItem => {
         menuItem.addEventListener('click', handleMenu);
     });
