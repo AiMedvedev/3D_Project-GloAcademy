@@ -43,16 +43,10 @@ const calculator = () => {
             e.target.value = e.target.value.replace(/-{2,}/g, "-");
             e.target.value = e.target.value.replace(/ {2,}/g, " ");
             e.target.value = e.target.value.replace(/^[ -]*/g, "");
-            e.target.value = e.target.value.replace(/[а-я]?[ -]$/g, "");
-            //e.target.value = e.target.value.replace(/^ /g, "");
-            //e.target.value = e.target.value.replace(/ $/g, "");
-            
-
-            //e.target.value = e.target.value.replace(/ {2,}/g, " ");
-            /* if (!input.value.includes('@')) { // не email
-            input.classList.add('invalid');
-            error.innerHTML = 'Пожалуйста, введите правильный email.'
-            } */
+            e.target.value = e.target.value.replace(/[- ]?[ -]*$/g, "");
+            e.target.value = e.target.value.replace(/(-| |^)[а-яёa-z]/g, ($1) => {
+                return `${$1.toUpperCase()}`;
+            });
         };
     });
 }
