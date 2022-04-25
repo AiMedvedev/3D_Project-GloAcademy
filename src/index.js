@@ -5,7 +5,7 @@ import smoothScroll from './modules/scroll';
 import calculator from './modules/calculator';
 import tabs from './modules/tabs';
 
-timer('25 april 2022');
+timer('30 april 2022');
 menu();
 modal();
 smoothScroll();

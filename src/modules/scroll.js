@@ -1,6 +1,5 @@
 const smoothScroll = () => {
     
-    
 const services = document.querySelector('.service .container');
 const nextBtn = document.querySelector('main>a>img');
 
