@@ -1,7 +1,6 @@
 const modal = () => {
     const buttons = document.querySelectorAll('.popup-btn');
     const modal = document.querySelector('.popup');
-    const closeBtn = modal.querySelector('.popup-close');
     const mediaQuery = window.matchMedia('(min-width: 768px)');
 
     let count = 0,
@@ -10,7 +9,7 @@ const modal = () => {
     if (mediaQuery.matches) {
 
         const animatePopup = () => {
-            count++;
+            count += 2;
             idInterval = requestAnimationFrame(animatePopup);
 
             modal.style.display = 'block';
@@ -22,7 +21,7 @@ const modal = () => {
         };
 
         const unPop = () => {
-            count--;
+            count -= 2;
             idInterval = requestAnimationFrame(unPop);
 
             if (count > 0) {
@@ -37,7 +36,11 @@ const modal = () => {
             btn.addEventListener('click', animatePopup);
         });
 
-        closeBtn.addEventListener('click', unPop);
+        modal.addEventListener('click', (e) => {
+            if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+                unPop();
+            }
+        });
 
     } else {
         buttons.forEach(btn => {
@@ -46,8 +49,10 @@ const modal = () => {
             });
         });
 
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+        modal.addEventListener('click', (e) => {
+            if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+                modal.style.display = 'none';
+            }
         });
     }
 };
