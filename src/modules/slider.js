@@ -1,14 +1,13 @@
-/* try {
-    import indexJs from '../index';
-} catch {
-    return;
-} */
+
+import indexJs from '../index';
+
+indexJs();
 
 const slider = () => {
-    const sliderBlock = document.querySelector('.portfolio-content');
+    /* const sliderBlock = document.querySelector('.portfolio-content');
     const slides = document.querySelectorAll('.portfolio-item');
     const dotList = document.querySelector('.portfolio-dots');
-    
+ */
     let timeInterval = 2000;
     let currentSlide = 0;
     let interval;

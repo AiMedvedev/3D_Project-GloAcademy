@@ -6,7 +6,7 @@ import calculator from './modules/calculator';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 
-/* export const indexJs = () => {
+const indexJs = () => {
     const sliderBlock = document.querySelector('.portfolio-content');
     const slides = document.querySelectorAll('.portfolio-item');
     const dotList = document.querySelector('.portfolio-dots');
@@ -15,8 +15,8 @@ import slider from './modules/slider';
     
     return sliderBlock, slides, dotList
 }
- */
 
+export default indexJs;
     
 timer('30 april 2022');
 menu();
