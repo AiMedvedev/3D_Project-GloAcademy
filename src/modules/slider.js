@@ -1,3 +1,9 @@
+/* try {
+    import indexJs from '../index';
+} catch {
+    return;
+} */
+
 const slider = () => {
     const sliderBlock = document.querySelector('.portfolio-content');
     const slides = document.querySelectorAll('.portfolio-item');

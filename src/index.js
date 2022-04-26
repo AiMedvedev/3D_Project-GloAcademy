@@ -6,6 +6,18 @@ import calculator from './modules/calculator';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 
+/* export const indexJs = () => {
+    const sliderBlock = document.querySelector('.portfolio-content');
+    const slides = document.querySelectorAll('.portfolio-item');
+    const dotList = document.querySelector('.portfolio-dots');
+    
+    
+    
+    return sliderBlock, slides, dotList
+}
+ */
+
+    
 timer('30 april 2022');
 menu();
 modal();
@@ -13,4 +25,3 @@ smoothScroll();
 calculator();
 tabs();
 slider();
-
