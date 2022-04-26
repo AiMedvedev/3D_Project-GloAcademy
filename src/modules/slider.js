@@ -1,7 +1,7 @@
 
-import indexJs from '../index';
+import calculator from './modules/calculator'
 
-indexJs();
+calculator();
 
 const slider = () => {
     /* const sliderBlock = document.querySelector('.portfolio-content');
