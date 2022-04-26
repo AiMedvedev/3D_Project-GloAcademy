@@ -49,10 +49,6 @@ const calculator = () => {
             });
         };
     });
-
-    const sliderBlock = document.querySelector('.portfolio-content');
-    const slides = document.querySelectorAll('.portfolio-item');
-    const dotList = document.querySelector('.portfolio-dots');
 }
 
 export default calculator;
