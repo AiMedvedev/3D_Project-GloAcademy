@@ -10,7 +10,7 @@ const calc = (price = 100) => {
     const total = document.getElementById('total');
 
     const countCalc = () => {
-        
+
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
 
@@ -19,33 +19,30 @@ const calc = (price = 100) => {
         let calcDayValue = 1;
 
         const calcAnimation = (num) => {
-            let animationId = requestAnimationFrame(calcAnimation)
-            const time = 500;
-            const step = 10; 
 
-                let n = +total.textContent;
-                let t = Math.round(time/(num/step));
-                let interval = setInterval(() => {
-                    if (n < num) {
-                        n += step;    
-                    }
-                    if (n == num) {
-                          clearInterval(interval);
-                     }
-                     if (n > num) {
-                         n -= step;
-                     }
-                    total.innerHTML = n;
-                }, t);
-            
-            cancelAnimationFrame(animationId);
-            
+            const time = 500;
+            const step = 10;
+
+            let n = +total.textContent;
+            let t = Math.round(time / (num / step));
+            let interval = setInterval(() => {
+                if (n < num) {
+                    n += step;
+                }
+                if (n == num) {
+                    clearInterval(interval);
+                }
+                if (n > num) {
+                    n -= step;
+                }
+                total.innerHTML = n;
+            }, t);
         }
 
         if (calcCount.value > 1) {
             calcCountValue += +calcCount.value / 10;
         }
-        
+
         if (calcDay.value && calcDay.value < 5) {
             calcDayValue = 2;
         } else if (calcDay.value && calcDay.value < 10) {
@@ -64,7 +61,7 @@ const calc = (price = 100) => {
 
     calcBlock.addEventListener('change', (e) => {
         if ((e.target === calcType) || (e.target === calcSquare) ||
-         (e.target === calcCount) ||(e.target === calcDay)) {
+            (e.target === calcCount) || (e.target === calcDay)) {
             countCalc();
         }
     });
@@ -83,7 +80,7 @@ const calc = (price = 100) => {
             e.target.value = e.target.value.replace(/\D+/g, "");
         })
     });
-    
+
     textInputs.forEach(item => {
         item.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^а-яА-Я -]/g, "");
@@ -93,13 +90,13 @@ const calc = (price = 100) => {
     textArea.addEventListener('input', (e) => {
         e.target.value = e.target.value.replace(/[^а-яА-Я -]/g, "");
     });
-    
+
     emailInputs.forEach(item => {
         item.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^0-9a-zA-Z@-_.!~*']/g, "");
         })
     });
-    
+
     telInputs.forEach(item => {
         item.addEventListener('input', (e) => {
             e.target.value = e.target.value.replace(/[^0-9()-]/g, "");
@@ -107,7 +104,7 @@ const calc = (price = 100) => {
     });
 
     textInputs.forEach(item => {
-       item.onblur = function(e) {
+        item.onblur = function (e) {
             e.target.value = e.target.value.replace(/-{2,}/g, "-");
             e.target.value = e.target.value.replace(/ {2,}/g, " ");
             e.target.value = e.target.value.replace(/^[ -]*/g, "");
@@ -120,4 +117,3 @@ const calc = (price = 100) => {
 }
 
 export default calc;
-
