@@ -12,20 +12,21 @@ const modal = () => {
     if (mediaQuery.matches) {
 
         buttons.forEach(btn => {
-            btn.addEventListener('click', animate({
+            btn.addEventListener('click', () => {animate({
                 duration: 1000,
                 timing(timeFraction) {
                     return timeFraction;
                 },
                 draw() {
-                    count += 2;
-
                     modal.style.display = 'block';
+
                     if (count < 100) {
                         modal.style.opacity = count + '%';
+                        count += 2;
                     }
                 }
-            }));
+            });
+            });
         });
 
         modal.addEventListener('click', (e) => {
@@ -36,10 +37,9 @@ const modal = () => {
                         return timeFraction;
                     },
                     draw() {
-                        count -= 2;
-
                         if (count > 0) {
                             modal.style.opacity = count + '%';
+                            count -= 2;
                         } else {
                             modal.style.display = 'none';
                         }
