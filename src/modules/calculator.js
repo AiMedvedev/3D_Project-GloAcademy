@@ -1,3 +1,5 @@
+import { debounce } from './helpers';
+
 const calc = (price = 100) => {
 
     // Калькулятор расчета.
@@ -9,7 +11,7 @@ const calc = (price = 100) => {
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
 
-    const countCalc = () => {
+    const countCalc = debounce(() => {
 
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -57,7 +59,7 @@ const calc = (price = 100) => {
         }
 
         total.textContent = totalValue;
-    }
+    }, 1000)
 
     calcBlock.addEventListener('change', (e) => {
         if ((e.target === calcType) || (e.target === calcSquare) ||
