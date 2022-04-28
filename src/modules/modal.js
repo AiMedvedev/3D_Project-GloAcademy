@@ -1,44 +1,50 @@
+import {
+    animate
+} from './helpers';
+
 const modal = () => {
     const buttons = document.querySelectorAll('.popup-btn');
     const modal = document.querySelector('.popup');
     const mediaQuery = window.matchMedia('(min-width: 768px)');
 
-    let count = 0,
-        idInterval;
+    let count = 0;
 
     if (mediaQuery.matches) {
 
-        const animatePopup = () => {
-            count += 2;
-            idInterval = requestAnimationFrame(animatePopup);
-
-            modal.style.display = 'block';
-            if (count < 100) {
-                modal.style.opacity = count + '%';
-            } else {
-                cancelAnimationFrame(idInterval);
-            }
-        };
-
-        const unPop = () => {
-            count -= 2;
-            idInterval = requestAnimationFrame(unPop);
-
-            if (count > 0) {
-                modal.style.opacity = count + '%';
-            } else {
-                cancelAnimationFrame(idInterval);
-                modal.style.display = 'none';
-            }
-        };
-
         buttons.forEach(btn => {
-            btn.addEventListener('click', animatePopup);
+            btn.addEventListener('click', animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw() {
+                    count += 2;
+
+                    modal.style.display = 'block';
+                    if (count < 100) {
+                        modal.style.opacity = count + '%';
+                    }
+                }
+            }));
         });
 
         modal.addEventListener('click', (e) => {
             if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
-                unPop();
+                animate({
+                    duration: 1000,
+                    timing(timeFraction) {
+                        return timeFraction;
+                    },
+                    draw() {
+                        count -= 2;
+
+                        if (count > 0) {
+                            modal.style.opacity = count + '%';
+                        } else {
+                            modal.style.display = 'none';
+                        }
+                    }
+                });;
             }
         });
 
