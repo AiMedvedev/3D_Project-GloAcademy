@@ -1,3 +1,5 @@
+import { debounce, animate } from './helpers';
+
 const calc = (price = 100) => {
 
     // Калькулятор расчета.
@@ -8,8 +10,8 @@ const calc = (price = 100) => {
     const calcCount = document.querySelector('.calc-count');
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
-
-    const countCalc = () => {
+    
+    const countCalc = debounce(() => {
 
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -17,37 +19,6 @@ const calc = (price = 100) => {
         let totalValue = 0;
         let calcCountValue = 1;
         let calcDayValue = 1;
-
-        function debounce(func, timeout = 500){
-            let timer;
-            return (...args) => {
-              clearTimeout(timer);
-              timer = setTimeout(() => { func.apply(this, args); }, timeout);
-            };
-        }
-
-        //  const processChange = debounce(() => saveInput());
-
-        const calcAnimation = debounce((num) => {
-
-            const time = 500;
-            const step = 10;
-
-            let n = +total.textContent;
-            let t = Math.round(time / (num / step));
-            let interval = setInterval(() => {
-                if (n < num) {
-                    n += step;
-                }
-                if (n == num) {
-                    clearInterval(interval);
-                }
-                if (n > num) {
-                    n -= step;
-                }
-                total.innerHTML = n;
-            }, t);
-        });
 
         if (calcCount.value > 1) {
             calcCountValue += +calcCount.value / 10;
@@ -61,13 +32,22 @@ const calc = (price = 100) => {
 
         if (calcType.value && calcSquare.value) {
             totalValue = price * calcTypeValue * calcSquareValue * calcCountValue * calcDayValue;
-            calcAnimation(totalValue);
+            animate({
+                duration: 1000,
+                timing(timeFraction) {
+                    return timeFraction;
+                },
+                draw(progress) {
+                    total.textContent = Math.floor(progress * totalValue);
+                }
+            });
+            
         } else {
             totalValue = 0;
         }
 
         total.textContent = totalValue;
-    }
+    }, 1000)
 
     calcBlock.addEventListener('change', (e) => {
         if ((e.target === calcType) || (e.target === calcSquare) ||
