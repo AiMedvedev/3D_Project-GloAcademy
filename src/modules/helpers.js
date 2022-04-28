@@ -15,7 +15,6 @@ const animate = ({timing, draw, duration}) => {
       if (timeFraction < 1) {
         requestAnimationFrame(animate);
       }
-  
     });
 }
 

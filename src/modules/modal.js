@@ -1,6 +1,4 @@
-import {
-    animate
-} from './helpers';
+import { animate } from './helpers';
 
 const modal = () => {
     const buttons = document.querySelectorAll('.popup-btn');
@@ -12,20 +10,22 @@ const modal = () => {
     if (mediaQuery.matches) {
 
         buttons.forEach(btn => {
-            btn.addEventListener('click', animate({
-                duration: 1000,
-                timing(timeFraction) {
-                    return timeFraction;
-                },
-                draw() {
-                    count += 2;
+            btn.addEventListener('click', () => {
+                animate({
+                    duration: 1000,
+                    timing(timeFraction) {
+                        return timeFraction;
+                    },
+                    draw(progress) {
+                        modal.style.display = 'block';
 
-                    modal.style.display = 'block';
-                    if (count < 100) {
-                        modal.style.opacity = count + '%';
+                        if (count < 100) {
+                            modal.style.opacity = count + '%';
+                            count += 2;
+                        }
                     }
-                }
-            }));
+                });
+            });
         });
 
         modal.addEventListener('click', (e) => {
@@ -35,16 +35,15 @@ const modal = () => {
                     timing(timeFraction) {
                         return timeFraction;
                     },
-                    draw() {
-                        count -= 2;
-
+                    draw(progress) {
                         if (count > 0) {
                             modal.style.opacity = count + '%';
+                            count -= 2;
                         } else {
                             modal.style.display = 'none';
                         }
                     }
-                });;
+                });
             }
         });
 

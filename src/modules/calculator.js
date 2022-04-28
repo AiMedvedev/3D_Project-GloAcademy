@@ -18,7 +18,17 @@ const calc = (price = 100) => {
         let calcCountValue = 1;
         let calcDayValue = 1;
 
-        const calcAnimation = (num) => {
+        function debounce(func, timeout = 500){
+            let timer;
+            return (...args) => {
+              clearTimeout(timer);
+              timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            };
+        }
+
+        //  const processChange = debounce(() => saveInput());
+
+        const calcAnimation = debounce((num) => {
 
             const time = 500;
             const step = 10;
@@ -37,7 +47,7 @@ const calc = (price = 100) => {
                 }
                 total.innerHTML = n;
             }, t);
-        }
+        });
 
         if (calcCount.value > 1) {
             calcCountValue += +calcCount.value / 10;
