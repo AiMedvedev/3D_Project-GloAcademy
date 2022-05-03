@@ -22,6 +22,13 @@ sendForm({formId: 'form1', someElem: [
         id: 'total'
     }
 ]});
+sendForm({formId: 'form3'})
+sendForm({formId: 'form2', someElem: [
+    {
+        type: 'block',
+        id: 'total'
+    }
+]})
 
 const portfolioSlider = new Slider('.portfolio-content', '.portfolio-item', '.portfolio-dots');
 portfolioSlider.sliderFunc();

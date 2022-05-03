@@ -60,10 +60,10 @@ const calc = (price = 100) => {
     // Проверки на ввод.
 
     const calcInputs = document.querySelectorAll('input.calc-item');
-    const textInputs = document.querySelectorAll('input[Placeholder="Ваше имя"]');
-    const textArea = document.querySelector('input[Placeholder="Ваше сообщение"]');
-    const emailInputs = document.querySelectorAll('input[Type="email"]');
-    const telInputs = document.querySelectorAll('input[Type="tel"]');
+    const textInputs = document.querySelectorAll('input[name="user_name"]');
+    const textArea = document.querySelector('input[name="user_message"]');
+    const emailInputs = document.querySelectorAll('input[name="user_email"]');
+    const telInputs = document.querySelectorAll('input[name="user_phone"]');
 
 
     calcInputs.forEach(item => {
@@ -74,12 +74,12 @@ const calc = (price = 100) => {
 
     textInputs.forEach(item => {
         item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^a-zA-Zа-яА-Я -]/g, "");
+            e.target.value = e.target.value.replace(/[^а-яА-Я -]/g, "");
         })
     });
 
     textArea.addEventListener('input', (e) => {
-        e.target.value = e.target.value.replace(/[^а-яА-Я -]/g, "");
+        e.target.value = e.target.value.replace(/[^а-яА-Я0-9 -]/g, "");
     });
 
     emailInputs.forEach(item => {
