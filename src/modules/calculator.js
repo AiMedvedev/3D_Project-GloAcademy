@@ -1,4 +1,4 @@
-import { debounce, animate } from './helpers';
+import { animate } from './helpers';
 
 const calc = (price = 100) => {
 
@@ -11,7 +11,7 @@ const calc = (price = 100) => {
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
     
-    const countCalc = debounce(() => {
+    const countCalc = () => {
 
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -38,7 +38,8 @@ const calc = (price = 100) => {
                     return timeFraction;
                 },
                 draw(progress) {
-                    total.textContent = Math.floor(progress * totalValue);
+                    
+                    total.textContent = +total.textContent + Math.floor(progress * (totalValue - total.textContent));
                 }
             });
             
@@ -47,7 +48,7 @@ const calc = (price = 100) => {
         }
 
         total.textContent = totalValue;
-    }, 1000)
+    }
 
     calcBlock.addEventListener('change', (e) => {
         if ((e.target === calcType) || (e.target === calcSquare) ||

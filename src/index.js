@@ -5,6 +5,7 @@ import smoothScroll from './modules/scroll';
 import calc from './modules/calculator';
 import tabs from './modules/tabs';
 import {Slider} from './modules/slider';
+import {swiper} from './modules/swiper';
 
 
 timer('30 april 2022');
@@ -13,7 +14,7 @@ modal();
 smoothScroll();
 calc(100);
 tabs();
-
+swiper();
 
 const portfolioSlider = new Slider('.portfolio-content', '.portfolio-item', '.portfolio-dots');
 portfolioSlider.sliderFunc();

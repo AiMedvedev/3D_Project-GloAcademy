@@ -1,7 +1,7 @@
 const animate = ({timing, draw, duration}) => {
 
     let start = performance.now();
-  
+    
     requestAnimationFrame(function animate(time) {
       // timeFraction изменяется от 0 до 1
       let timeFraction = (time - start) / duration;
@@ -17,13 +17,4 @@ const animate = ({timing, draw, duration}) => {
       }
     });
 }
-
-const debounce = (func, timeout = 500) => {
-  let timer;
-  return (...args) => {
-    clearTimeout(timer);
-    timer = setTimeout(() => { func.apply(this, args); }, timeout);
-  };
-}
-
-export { animate, debounce }
+export { animate }
