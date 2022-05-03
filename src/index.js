@@ -6,15 +6,22 @@ import calc from './modules/calculator';
 import tabs from './modules/tabs';
 import {Slider} from './modules/slider';
 import {swiper} from './modules/swiper';
+import {sendForm} from './modules/sendForm';
 
 
-timer('30 april 2022');
+timer('18 may 2022');
 menu();
 modal();
 smoothScroll();
 calc(100);
 tabs();
 swiper();
+sendForm({formId: 'form1', someElem: [
+    {
+        type: 'block',
+        id: 'total'
+    }
+]});
 
 const portfolioSlider = new Slider('.portfolio-content', '.portfolio-item', '.portfolio-dots');
 portfolioSlider.sliderFunc();

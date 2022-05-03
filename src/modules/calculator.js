@@ -39,7 +39,7 @@ const calc = (price = 100) => {
                 },
                 draw(progress) {
                     
-                    total.textContent = +total.textContent + Math.floor(progress * (totalValue - total.textContent));
+                    total.textContent = Math.floor(progress * totalValue);
                 }
             });
             
@@ -74,7 +74,7 @@ const calc = (price = 100) => {
 
     textInputs.forEach(item => {
         item.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/[^а-яА-Я -]/g, "");
+            e.target.value = e.target.value.replace(/[^a-zA-Zа-яА-Я -]/g, "");
         })
     });
 
