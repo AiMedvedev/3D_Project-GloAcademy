@@ -56,7 +56,8 @@ export const sendForm = ({formId, someElem = []}) => {
                 statusBlock.textContent = successText;
                 formElements.forEach(input => {
                     input.value = '';
-                })
+                });
+                setTimeout(() => {statusBlock.textContent = ''}, 5000);
             })
             .catch(error => statusBlock.textContent = errorText);
         } else {
