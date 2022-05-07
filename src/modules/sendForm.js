@@ -9,7 +9,7 @@ export const sendForm = ({formId, someElem = []}) => {
         let success = true;
         
         return success;
-    }
+    };
 
     const submitForm = () => {
         const formElements = form.querySelectorAll('input');
@@ -23,12 +23,12 @@ export const sendForm = ({formId, someElem = []}) => {
             intervalId = setInterval(() => {
                 statusBlock.innerText = arr[Math.floor(Math.random() * arr.length)];
             }, interval);
-        }
+        };
 
         const stopLoading = () => {
             clearInterval(intervalId);
             intervalId = null;
-          }
+        };
         
         form.classList.add('preload');
         statusBlock.classList.add('emoji');
@@ -57,13 +57,13 @@ export const sendForm = ({formId, someElem = []}) => {
                 formElements.forEach(input => {
                     input.value = '';
                 });
-                setTimeout(() => {statusBlock.textContent = ''}, 5000);
+                setTimeout(() => {statusBlock.textContent = '';}, 5000);
             })
             .catch(error => statusBlock.textContent = errorText);
         } else {
             alert('Данные не валидны');
         }        
-    }
+    };
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -72,8 +72,8 @@ export const sendForm = ({formId, someElem = []}) => {
                 "Content-Type": "application/json"
             }
         })
-        .then(res => res.json())
-    }
+        .then(res => res.json());
+    };
 
     if (formId === 'form3') {
         statusBlock.style.color = 'white';
@@ -81,14 +81,14 @@ export const sendForm = ({formId, someElem = []}) => {
 
     try {
         if (!form) {
-            throw new Error('Верните форму на местоб пожалуйста!')
+            throw new Error('Верните форму на место, пожалуйста!');
         }
 
         form.addEventListener('submit', (event) => {
             event.preventDefault();
             submitForm();
-        })
+        });
     } catch (error) {
-        console.log(error.message)
+        console.log(error.message);
     }
-}
+};
