@@ -64,6 +64,7 @@ export const sendForm = ({formId, someElem = []}) => {
             alert('Данные не валидны');
         }        
     }
+    
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
