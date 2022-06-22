@@ -26,21 +26,21 @@ class Slider {
                 let dot = document.createElement('li');
 
                 dot.classList.add('dot');
-                dotList.append(dot)
+                dotList.append(dot);
 
                 return dotList;
-            })
+            });
 
             dots = dotList.querySelectorAll('.dot');
             dots[currentSlide].classList.add(this.activeDotClass);
 
             const prevSlide = (elems, index, strClass) => {
                 elems[index].classList.remove(strClass);
-            }
+            };
 
             const nextSlide = (elems, index, strClass) => {
                 elems[index].classList.add(strClass);
-            }
+            };
 
             const autoSlide = () => {
                 prevSlide(slides, currentSlide, this.activeSlideClass);
@@ -52,16 +52,15 @@ class Slider {
                 }
                 nextSlide(slides, currentSlide, this.activeSlideClass);
                 nextSlide(dots, currentSlide, this.activeDotClass);
-            }
+            };
 
             const startSlide = (timer = 4000) => {
-                interval = setInterval(autoSlide, timer)
-
-            }
+                interval = setInterval(autoSlide, timer);
+            };
 
             const stopSlide = () => {
                 clearInterval(interval);
-            }
+            };
 
             sliderBlock.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -94,22 +93,20 @@ class Slider {
                 }
                 nextSlide(slides, currentSlide, this.activeSlideClass);
                 nextSlide(dots, currentSlide, this.activeDotClass);
-            })
+            });
             
             sliderBlock.addEventListener('mouseenter', (e) => {
-                console.log('enter');
                 if (e.target.matches('.dot, .portfolio-btn')) {
                     stopSlide();
                 }
-            }, true)
+            }, true);
 
             sliderBlock.addEventListener('mouseleave', (e) => {
                 
                 if (e.target.matches('.dot, .portfolio-btn')) {
-                    console.log('leave');
                     startSlide(this.timeInterval);
                 }
-            }, true)
+            }, true);
 
             startSlide(this.timeInterval);
         }
