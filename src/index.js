@@ -9,7 +9,7 @@ import {swiper} from './modules/swiper';
 import {sendForm} from './modules/sendForm';
 
 
-timer('18 july 2022');
+timer('31 december 2022');
 menu();
 modal();
 smoothScroll();
