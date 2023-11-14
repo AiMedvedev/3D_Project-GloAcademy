@@ -5,12 +5,12 @@ module.exports = {
     entry: './index.js',
     output: {
         filename: 'js/main.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'public')
     },
     devServer: {
         hot: true,
         static: {
-            directory: './dist',
+            directory: './public',
             watch: true
         }
     }
